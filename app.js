@@ -3,6 +3,10 @@ const port = 5000;
 
 const app = express();
 
+// Body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.listen(port, () => {
   console.log(`Server Listening on port: ${port}`);
 });
