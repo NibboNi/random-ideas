@@ -27,6 +27,11 @@ class IdeaList {
     }
   }
 
+  addIdeaToList(idea) {
+    this.#ideas.push(idea);
+    this.render();
+  }
+
   getTagClass(tag) {
     tag = tag.toLowerCase();
     let tagClass = "";
