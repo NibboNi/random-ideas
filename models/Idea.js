@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const IdeaSchema = new mongoose.Schema({
   text: {
     type: String,
-    require: [true, "Please add a text fields"],
+    required: [true, "Please add a text fields"],
   },
   tag: {
     type: String,
