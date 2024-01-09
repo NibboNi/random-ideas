@@ -1,6 +1,5 @@
 const path = require("path");
 const express = require("express");
-const cors = require("cors");
 require("dotenv").config();
 const port = process.env.PORT || 5000;
 const connectDB = require("./config/db");
@@ -17,12 +16,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // cors middleware
-app.use(
-  cors({
-    origin: ["http://localhost:5000", "http://localhost:3000"],
-    credentials: true,
-  })
-);
+// NOTE: only use cors middleare in development as in production both client and
+// API are served from the same origin
+if (process.env.NODE_ENV !== "production") {
+  const cors = require("cors");
+  app.use(
+    cors({
+      origin: ["http://localhost:5000", "http://localhost:3000"],
+      credentials: true,
+    })
+  );
+}
 
 app.listen(port, () => {
   console.log(`Server Listening on port: ${port}`);
